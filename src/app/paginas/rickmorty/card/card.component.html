@@ -1,26 +1,53 @@
 <div class="row mb-3 g-3">
-        <ng-container *ngIf="personajesAll && personajesAll.results && personajesAll.results.length>0; else noPersonajes">
-            <div class="col-3" *ngFor="let personaje of personajesAll.results">
-               <div class="card fixed-card">
-                    <img [src]="personaje.data?.image" class="card-img-top fixed-img" alt="...">
-                    <div class="card-body fixed-body" >
-                        <h5 class="card-title">{{personaje.name}}</h5>
-                        <p class="card-text">{{personaje.data?.gender}}</p>
-                        <a class="btn btn-primary"(click)="openModal(personaje.data!)">Mas Informacion</a>
-                    </div>
-               </div> 
-                
-            </div>
-        </ng-container>
-        
-        <ng-template #noPersonajes>
-            <div class="col-12">
-                <div class="alert alert warning" role="alert">
-                    No se encontraron personajes
-                </div>
-            </div>
-        </ng-template>
-    
+    <ng-container *ngIf="personajesAll && personajesAll.results && personajesAll.results.length > 0; else noPersonajes">
+      <div class="col-3" *ngFor="let personaje of personajesAll.results; let i = index">
+        <div class="card fixed-card">
+  
+          
+          <div class="position-relative">
+          
+            <!-- Loader mejorado -->
+<div class="loader-wrapper" *ngIf="!imagenesCargadas[i]">
+  <div class="loader-bg">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="80" height="80">
+      <g>
+        <circle stroke-linecap="round" fill="none" stroke-dasharray="50.27 50.27" stroke="#e15b64" stroke-width="8" r="32" cy="50" cx="50">
+          <animateTransform values="0 50 50;360 50 50" keyTimes="0;1" repeatCount="indefinite" dur="1.5s" type="rotate" attributeName="transform"/>
+        </circle>
+        <circle stroke-linecap="round" fill="none" stroke-dashoffset="36.13" stroke-dasharray="36.13 36.13" stroke="#f8b26a" stroke-width="8" r="23" cy="50" cx="50">
+          <animateTransform values="0 50 50;-360 50 50" keyTimes="0;1" repeatCount="indefinite" dur="1.5s" type="rotate" attributeName="transform"/>
+        </circle>
+      </g>
+    </svg>
+  </div>
 </div>
 
-<rickymorty-modal />
+            <img 
+              [src]="personaje.data?.image" 
+              class="card-img-top fixed-img" 
+              alt="..." 
+              (load)="imagenCargada(i)"
+              [style.display]="imagenesCargadas[i] ? 'block' : 'none'"
+            />
+          </div>
+  
+          <div class="card-body fixed-body">
+            <h5 class="card-title">{{ personaje.name }}</h5>
+            <p class="card-text">{{ personaje.data?.gender }}</p>
+            <a class="btn btn-primary" (click)="openModal(personaje.data!)">Más Información</a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  
+    <ng-template #noPersonajes>
+      <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+          No se encontraron personajes
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  
+  <rickymorty-modal />
+  

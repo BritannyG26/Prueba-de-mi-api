@@ -9,24 +9,26 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          
+
           <div class="col-md-6 text-center">
             <img [src]="personaje.image" [alt]="personaje.name" class="img-fluid mb-3 rounded">
             <p><strong>Último paradero conocido:</strong></p>
             <p>{{ personaje.location.name }}</p>
           </div>
 
-          
           <div class="col-md-6">
             <p><strong>ID:</strong> {{ personaje.id }}</p>
             <hr>
             <p><strong>Estado:</strong> {{ personaje.status }}</p>
+            <hr>
+            <p><strong>Especie:</strong> {{ personaje.species }}</p>
             <hr>
             <p><strong>Género:</strong> {{ personaje.gender }}</p>
             <hr>
             <p><strong>Origen:</strong> {{ personaje.origin.name }}</p>
             <hr>
           </div>
+
         </div>
       </div>
       <div class="modal-footer">
