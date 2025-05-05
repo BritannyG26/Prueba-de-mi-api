@@ -1,0 +1,9 @@
+<div class="row">
+    <rickymorty-search (eventSearch)="searchPersonaje($event)"/>
+</div>
+
+<rickymorty-paginacion (eventNewPersonajes)="setNewPersonajes($event)"/>
+
+<rickymorty-card [personajesAll]="personajes"/>
+
+<rickymorty-paginacion (eventNewPersonajes)="setNewPersonajes($event)"/>

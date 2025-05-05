@@ -1,0 +1,26 @@
+<div class="row mb-3 g-3">
+        <ng-container *ngIf="personajesAll && personajesAll.results && personajesAll.results.length>0; else noPersonajes">
+            <div class="col-3" *ngFor="let personaje of personajesAll.results">
+               <div class="card fixed-card">
+                    <img [src]="personaje.data?.image" class="card-img-top fixed-img" alt="...">
+                    <div class="card-body fixed-body" >
+                        <h5 class="card-title">{{personaje.name}}</h5>
+                        <p class="card-text">{{personaje.data?.gender}}</p>
+                        <a class="btn btn-primary"(click)="openModal(personaje.data!)">Mas Informacion</a>
+                    </div>
+               </div> 
+                
+            </div>
+        </ng-container>
+        
+        <ng-template #noPersonajes>
+            <div class="col-12">
+                <div class="alert alert warning" role="alert">
+                    No se encontraron personajes
+                </div>
+            </div>
+        </ng-template>
+    
+</div>
+
+<rickymorty-modal />
