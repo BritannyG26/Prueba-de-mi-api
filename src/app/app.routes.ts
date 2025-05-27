@@ -6,6 +6,7 @@ import { DbzComponent } from './paginas/dbz/dbz.component';
 import { CoctelesComponent } from './paginas/cocteles/cocteles.component';
 import { ErrorComponent } from './paginas/error/error.component';
 import { RickmortyComponent } from './paginas/rickmorty/rickmorty.component';
+import { AuthGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
     {path:'', redirectTo:'home', pathMatch:'full'},
@@ -14,6 +15,9 @@ export const routes: Routes = [
     {path:'dbz', component:DbzComponent},
     {path:'cocteles', component:CoctelesComponent},
     {path:'rickymorty', component:RickmortyComponent},
-    {path:'mi-api', loadChildren:()=> import('./paginas/mi-api/mi-api-routing.module').then(m=> m.MiApiRoutingModule)},
+    {path:'mi-api', 
+        loadChildren:() => import('./paginas/mi-api/mi-api-routing.module').then(m=> m.MiApiRoutingModule),
+        canActivate: [AuthGuard]
+    },
     {path:'**', component:ErrorComponent}
 ];
